@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    margin: 30px;
+    padding: 25px;
+    border: 1px solid black;
+}
+
+input{
+    margin-bottom: 10px;
+    padding: 0px 5px 0px 5px;
+}
+
+input:first-child{
+    margin-top: 10px;
+}
+
+button{
+    width: 50%;
+    margin: 0 auto;
+}
