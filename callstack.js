@@ -7,7 +7,7 @@ function square(n){
 }
 
 function printSquare(n){
-    const result = square(n);
+    const result = square(m);
     console.log(result);
 }
 
