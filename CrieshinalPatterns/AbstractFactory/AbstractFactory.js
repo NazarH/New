@@ -1,38 +1,36 @@
-class WoodenDoor {
-    getDescription() { console.log('Деревяные двери'); }
-}
-class IronDoor {
-    getDescription() { console.log('Металические двери'); }
-}
-class Welder {
-    getDescription() { console.log('Сварщик'); }
-}
-class Carpenter {
-    getDescription() { console.log('Плотник'); }
-}
 class WoodenDoorFactory {
-    makeDoor() {
+    createDoor() {
         return new WoodenDoor();
     }
-    makeFittingExpert() {
+    chooseWorker() {
         return new Carpenter();
     }
 }
 class IronDoorFactory {
-    makeDoor() {
+    createDoor() {
         return new IronDoor();
     }
-    makeFittingExpert() {
+    chooseWorker() {
         return new Welder();
     }
 }
-let woodenFactory = new WoodenDoorFactory();
-let door = woodenFactory.makeDoor();
-let expert = woodenFactory.makeFittingExpert();
-door.getDescription();
-expert.getDescription();
-let ironFactory = new IronDoorFactory();
-let door2 = ironFactory.makeDoor();
-let expert2 = ironFactory.makeFittingExpert();
-door.getDescription();
-expert.getDescription();
+class WoodenDoor {
+    WoodenDoor() {
+        console.log("Деревяная дверь готова");
+    }
+}
+class IronDoor {
+    IronDoor() {
+        console.log("Металическая дверь готова");
+    }
+}
+class Carpenter {
+    Carpenter() {
+        console.log("Плотник готов приступить к работе");
+    }
+}
+class Welder {
+    Welder() {
+        console.log("Сварщик готов приступить к работе");
+    }
+}

@@ -1,51 +1,49 @@
-interface Descr{
-    getDescription: () => any 
+interface FurnitureFactory{
+    createDoor: () => any;
+    chooseWorker: () => any;
 }
 
-class WoodenDoor implements Descr{
-    getDescription() { console.log('Деревяные двери') }
-}
-
-class IronDoor implements Descr{
-    getDescription() { console.log('Металические двери') }
-}
-
-class Welder implements Descr{
-    getDescription() { console.log('Сварщик') }
-}
-
-class Carpenter implements Descr{
-    getDescription(){ console.log('Плотник') }
-}
-
-class WoodenDoorFactory {
-    makeDoor(){
-        return new WoodenDoor()
+class WoodenDoorFactory implements FurnitureFactory{
+    public createDoor(){
+        return new WoodenDoor();
     }
-
-    makeFittingExpert(){
-        return new Carpenter()
+    public chooseWorker(){
+        return new Carpenter();
     }
 }
 
-class IronDoorFactory {
-    makeDoor(){
-        return new IronDoor()
+class IronDoorFactory implements FurnitureFactory{
+    public createDoor(){
+        return new IronDoor();
     }
-
-    makeFittingExpert(){
-        return new Welder()
+    public chooseWorker(){
+        return new Welder();
     }
 }
 
-let woodenFactory = new WoodenDoorFactory();
-let door = woodenFactory.makeDoor();
-let expert = woodenFactory.makeFittingExpert();
-door.getDescription();
-expert.getDescription();
+interface Door{}
+interface Work{}
 
-let ironFactory = new IronDoorFactory()
-let door2 = ironFactory.makeDoor()
-let expert2 = ironFactory.makeFittingExpert()
-door.getDescription()  
-expert.getDescription() 
+class WoodenDoor implements Door{
+    public WoodenDoor(){
+        console.log("Деревяная дверь готова")
+    }
+}
+
+class IronDoor implements Door{
+    public IronDoor(){
+        console.log("Металическая дверь готова")
+    }
+}
+
+class Carpenter implements Work{
+    public Carpenter(){
+        console.log("Плотник готов приступить к работе")
+    }
+}
+
+class Welder implements Work{
+    public Welder(){
+        console.log("Сварщик готов приступить к работе")
+    }
+}
