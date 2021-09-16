@@ -47,5 +47,5 @@ class ComplRegFacade{
 
 const registry = new ComplRegFacade();
 
-console.log(registry.register('Some Name', 'service', 'недоступний'));
-console.log(registry.register('Ather Name', 'product', 'помилка'));
+console.log(registry.register('Some Name', 'service', 'Сервіс недоступний'));
+console.log(registry.register('Ather Name', 'product', 'Пристрій не справний'));
