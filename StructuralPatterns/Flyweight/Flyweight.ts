@@ -16,12 +16,12 @@ class Car implements Cars{
     }
 }
 
-interface CarsFactory{
+interface FlyweightInterface{
     create(model: string, price: number): object;
     getCar(model: string): object;
 }
 
-class CarFactory implements CarsFactory{
+class Flyweight implements FlyweightInterface{
     cars: any[];
     constructor(){
         this.cars = [];
@@ -43,7 +43,7 @@ class CarFactory implements CarsFactory{
     }
 }
 
-const factory = new CarFactory();
+const factory = new Flyweight();
 
 const bmwX5 = factory.create('bmw', 10000);
 const audiA6 = factory.create('audi', 9000);
