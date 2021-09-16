@@ -36,9 +36,9 @@ class ComplRegFacade{
         let complaint;
 
         if(type === 'service'){
-            complaint = new ProductComplaint();
-        } else {
             complaint = new ServiceComplaints();
+        } else {
+            complaint = new ProductComplaint();
         }
 
         return complaint.add({id, customer, details});

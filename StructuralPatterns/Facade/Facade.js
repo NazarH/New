@@ -23,10 +23,10 @@ class ComplRegFacade {
         const id = Date.now();
         let complaint;
         if (type === 'service') {
-            complaint = new ProductComplaint();
+            complaint = new ServiceComplaints();
         }
         else {
-            complaint = new ServiceComplaints();
+            complaint = new ProductComplaint();
         }
         return complaint.add({ id, customer, details });
     }
