@@ -8,13 +8,13 @@ interface Android{
 
 class SomeIPhone implements IPhone{
     useLightning(){
-        console.log('Use lightning port');
+        console.log('Использовать lightning разъём');
     }
 }
 
 class AndroidPhone implements Android{
     useTypeC(){
-        console.log('Use Type-C');
+        console.log('Использовать Type-C');
     }
 }
 
@@ -26,7 +26,7 @@ class LightningToTypeCAdapter implements IPhone{
     }
 
     useLightning(){
-        console.log('Want to use lightning, converting to Type-C');
+        console.log('Конвертировать lightning, в Type-C');
         this.androidDevise.useTypeC();
     }
 }

@@ -12,7 +12,7 @@ class Сircle extends Figure{
     }
 
     getFigure(){
-        return `Circle is ${this.color.getColor()}`;
+        return `Круг ${this.color.getColor()}`;
     }
 
     setColor(color: any){
@@ -29,7 +29,7 @@ class Square extends Figure{
     }
 
     getFigure(){
-        return `Square is ${this.color.getColor()}`;
+        return `Квадрат ${this.color.getColor()}`;
     }
 
     setColor(color: any){
@@ -39,19 +39,19 @@ class Square extends Figure{
 
 class Black{
     getColor(){
-        return 'black';
+        return 'чёрный';
     }
 }
 
 class White{
     getColor(){
-        return 'white';
+        return 'белый';
     }
 }
 
 class Red{
     getColor(){
-        return 'red';
+        return 'красный';
     }
 }
 
