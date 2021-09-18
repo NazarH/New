@@ -11,8 +11,6 @@ class Engine extends Equipment {
         super();
         this.name = name;
         this.price = price;
-        this.name = name;
-        this.price = price;
     }
 }
 ;
@@ -21,16 +19,12 @@ class Body extends Equipment {
         super();
         this.name = name;
         this.price = price;
-        this.name = name;
-        this.price = price;
     }
 }
 ;
 class Tools extends Equipment {
     constructor(name, price) {
         super();
-        this.name = name;
-        this.price = price;
         this.name = name;
         this.price = price;
     }
@@ -54,7 +48,6 @@ class Composite extends Equipment {
 class Car extends Composite {
     constructor(name) {
         super();
-        this.name = name;
         this.name = name;
     }
 }
