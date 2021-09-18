@@ -22,8 +22,9 @@ class NewCalculator {
         };
     }
 }
-class AdapterNewToOldCalc {
+class AdapterNewToOldCalc extends OldCalculator {
     constructor() {
+        super();
         const newCalc = new NewCalculator();
         this.operations = function (term1, term2, operation) {
             switch (operation) {

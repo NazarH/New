@@ -30,10 +30,11 @@ class NewCalculator {
     }
 }
 
-class AdapterNewToOldCalc {
+class AdapterNewToOldCalc extends OldCalculator{
     operations: (term1: number, term2: number, operation: string) => number;
 
     constructor() {
+        super();
         const newCalc = new NewCalculator();
 
         this.operations = function(term1, term2, operation) {
