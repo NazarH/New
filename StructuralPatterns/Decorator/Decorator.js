@@ -12,7 +12,7 @@ class Server {
         return this.array;
     }
 }
-function decoratorAWS(server) {
+function DecoratorAWS(server) {
     this.aws = true;
     this.awsHttpsPort = 443;
     this.locations = ['USA', 'Canada', 'Europe', 'China'];
@@ -37,9 +37,17 @@ function decoratorAWS(server) {
     };
     return server;
 }
-let s1 = decoratorAWS(new Server('12.34.56.78', '8080', 'USA'));
+function DecoratorAzure(server) {
+    server.isAzure = true;
+    server.port = Number(server.port) + 500;
+    return server;
+}
+let s1 = DecoratorAWS(new Server('12.34.56.78', '8080', 'USA'));
 s1.setLocation();
 console.log(s1.awsInfo());
-let s2 = decoratorAWS(new Server('12.34.56.78', '8080', 'Africa'));
+let s2 = DecoratorAWS(new Server('12.34.56.78', '8080', 'Africa'));
 s2.setLocation();
 console.log(s2.awsInfo());
+let s3 = DecoratorAzure(new Server('23.54.76.98', '7680', 'Europe'));
+console.log(s3.isAzure);
+console.log(s3.port);
