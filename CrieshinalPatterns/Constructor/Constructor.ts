@@ -1,33 +1,38 @@
-class Fio{
-    constructor(public firstName: string, public midleName: string, public lastName: string){
-        this.firstName = firstName;
-        this.midleName = midleName;
-        this.lastName = lastName;
+class TaskBuilder{
+    description: string;
+    dueDate: string;
+    isFinished: boolean;
+
+    setDescription(description) {
+        this.description = description;
+        return this;
+    }
+
+    setDueDate(dueDate) {
+        this.dueDate = dueDate;
+        return this;
+    }
+
+    finished() {
+        this.isFinished = true;
+    }
+
+    congr(){
+        if(this.isFinished === true){
+            return 'Congratulations!';
+        }else{
+            return 'Nice try!';
+        }
     }
 }
 
-class Adress{
-    constructor(public zip: number, public street: string){
-        this.zip = zip;
-        this.street = street;
-    }
+class User extends TaskBuilder{
+    constructor(public name: string, public age: number, public phone: number){ super() }
 }
 
-class AtherInfo{
-    constructor(public age: number, public phone: string){
-        this.age = age;
-        this.phone = phone;
-    }
-}
+let newUser = new User('Some Name', 33, 88005553535);
 
-class User{
-    constructor(public fio: object, public adress: object, public atherInfo: object){
-            this.fio = Fio;
-            this.atherInfo = AtherInfo;
-            this.adress = Adress;
-    }
-}
-
-let newUser = new User(new Fio('FirstName', 'MidleName', 'LastName'), 
-                       new Adress(1111, 'Some street'), 
-                       new AtherInfo(23, '88005553535'));
+newUser.setDescription('Some descr').setDueDate('12.31.2021');
+console.log(newUser.congr());
+newUser.finished();
+console.log(newUser.congr());
