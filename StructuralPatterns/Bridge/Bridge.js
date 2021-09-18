@@ -1,54 +1,44 @@
-class Figure {
-    getFigure() { }
-    setColor(color) { }
-}
-class Сircle extends Figure {
-    constructor(color) {
-        super();
-        this.color = color;
-    }
-    getFigure() {
-        return `Circle is ${this.color.getColor()}`;
-    }
-    setColor(color) {
-        this.color = color;
+class Gestures {
+    constructor(output) {
+        this.output = output;
+        this.tap = () => { return this.output.click(); };
+        this.swipe = () => { return this.output.move(); };
+        this.pan = () => { return this.output.drag(); };
+        this.pinch = () => { return this.output.zoom(); };
     }
 }
-class Square extends Figure {
-    constructor(color) {
-        super();
-        this.color = color;
-    }
-    getFigure() {
-        return `Square is ${this.color.getColor()}`;
-    }
-    setColor(color) {
-        this.color = color;
+class Mouse {
+    constructor(output) {
+        this.output = output;
+        this.click = () => { return this.output.click(); };
+        this.move = () => { return this.output.move(); };
+        this.down = () => { return this.output.drag(); };
+        this.wheel = () => { return this.output.zoom(); };
     }
 }
-class Black {
-    getColor() {
-        return 'black';
+class ScreenD {
+    constructor() {
+        this.click = () => console.log("Screen select");
+        this.move = () => console.log("Screen move");
+        this.drag = () => console.log("Screen drag");
+        this.zoom = () => console.log("Screen zoom in");
     }
 }
-class White {
-    getColor() {
-        return 'white';
+class AudioD {
+    constructor() {
+        this.click = () => console.log("Sound oink");
+        this.move = () => console.log("Sound waves");
+        this.drag = () => console.log("Sound screetch");
+        this.zoom = () => console.log("Sound volume up");
     }
 }
-class Red {
-    getColor() {
-        return 'red';
-    }
-}
-const blackColor = new Black();
-const whiteColor = new White();
-const redColor = new Red();
-const circle = new Сircle(blackColor);
-const square = new Square(whiteColor);
-console.log(circle.getFigure());
-console.log(square.getFigure());
-circle.setColor(whiteColor);
-square.setColor(redColor);
-console.log(circle.getFigure());
-console.log(square.getFigure());
+let screenD = new ScreenD();
+let audioD = new AudioD();
+let hand = new Gestures(screenD);
+let mouse = new Mouse(audioD);
+hand.tap();
+hand.swipe();
+hand.pinch();
+mouse.click();
+mouse.move();
+mouse.wheel();

@@ -1,74 +1,56 @@
-class Figure{
-    getFigure(){}
-    setColor(color: any){}
+interface InpDevices{
+    output: object;
 }
 
-class Сircle extends Figure{
-    color: any;
+class Gestures implements InpDevices{
+    constructor(public output: any){}
 
-    constructor(color: any){
-        super();
-        this.color = color;
-    }
-
-    getFigure(){
-        return `Круг ${this.color.getColor()}`;
-    }
-
-    setColor(color: any){
-        this.color = color;
-    }
+    tap   = (): OutDevices => { return this.output.click();}
+    swipe = (): OutDevices => { return this.output.move(); }
+    pan   = (): OutDevices => { return this.output.drag(); }
+    pinch = (): OutDevices => { return this.output.zoom(); }
 }
 
-class Square extends Figure{
-    color: any;
+class Mouse implements InpDevices{
+    constructor(public output: any){}
 
-    constructor(color: any){
-        super();
-        this.color = color;
-    }
-
-    getFigure(){
-        return `Квадрат ${this.color.getColor()}`;
-    }
-
-    setColor(color: any){
-        this.color = color;
-    }
+    click = (): OutDevices => { return this.output.click();}
+    move  = (): OutDevices => { return this.output.move(); }
+    down  = (): OutDevices => { return this.output.drag(); }
+    wheel = (): OutDevices => { return this.output.zoom(); }
 }
 
-class Black{
-    getColor(){
-        return 'чёрный';
-    }
+interface OutDevices{
+    click:() => any;
+    move: () => any;
+    drag: () => any;
+    zoom: () => any;
 }
 
-class White{
-    getColor(){
-        return 'белый';
-    }
+class ScreenD implements OutDevices{
+    click = (): any  => console.log("Screen select");
+    move  = (): any  => console.log("Screen move");
+    drag  = (): any  => console.log("Screen drag");
+    zoom  = (): any  => console.log("Screen zoom in");
 }
 
-class Red{
-    getColor(){
-        return 'красный';
-    }
+class AudioD{
+    click = (): any => console.log("Sound oink");
+    move  = (): any => console.log("Sound waves");
+    drag  = (): any => console.log("Sound screetch");
+    zoom  = (): any => console.log("Sound volume up");
 }
 
-const blackColor = new Black();
-const whiteColor = new White();
-const redColor = new Red();
+let screenD = new ScreenD();
+let audioD  = new AudioD();
 
-const circle = new Сircle(blackColor);
-const square = new Square(whiteColor);
+let hand  = new Gestures(screenD);
+let mouse = new Mouse(audioD);
 
-console.log(circle.getFigure());
-console.log(square.getFigure());
+hand.tap();
+hand.swipe();
+hand.pinch();
 
-circle.setColor(whiteColor);
-square.setColor(redColor);
-
-console.log(circle.getFigure());
-console.log(square.getFigure());
-
-
+mouse.click();
+mouse.move();
+mouse.wheel();
