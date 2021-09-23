@@ -24,20 +24,12 @@ class ChatRoom implements ChatInt{
     }
 
     send(message: string, from: any, to: any = 'all'){
-        if(to){
-            if(to === 'all'){
-                console.log(`${from.name} to all: ${message}`);
-            } else {
-                to.receive(message, from);
-            }
+        if(to === 'all'){
+            console.log(`${from.name} to all: ${message}`);
         } else {
-            Object.keys(this.users).forEach(key => {
-                if(this.users[key] !== from){
-                    this.users[key].reseive(message, from);
-                }
-            })
+            to.receive(message, from);
         }
-    }
+    } 
 }
 
 let user1 = new User('User_1');
