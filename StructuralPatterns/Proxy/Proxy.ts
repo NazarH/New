@@ -13,7 +13,7 @@ class LabDoor implements Door{
 };
 
 class ProxySecurity{
-    constructor(public door: any) {}
+    constructor(public door: LabDoor) {}
 
     open(password): any{
         if (this.authenticate(password)) {

@@ -37,7 +37,7 @@ class Composite extends Equipment{
         this.equipments = [];
     }
 
-    add(equipment){
+    add(equipment: Equipment){
         this.equipments.push(equipment);
     }
 
