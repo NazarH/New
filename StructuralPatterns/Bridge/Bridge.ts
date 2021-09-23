@@ -3,7 +3,7 @@ interface InpDevices{
 }
 
 class Gestures implements InpDevices{
-    constructor(public output: any){}
+    constructor(public output: OutDevices){}
 
     tap   = (): OutDevices => { return this.output.click();}
     swipe = (): OutDevices => { return this.output.move(); }
@@ -12,7 +12,7 @@ class Gestures implements InpDevices{
 }
 
 class Mouse implements InpDevices{
-    constructor(public output: any){}
+    constructor(public output: OutDevices){}
 
     click = (): OutDevices => { return this.output.click();}
     move  = (): OutDevices => { return this.output.move(); }
