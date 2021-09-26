@@ -1,50 +1,39 @@
-class Server {
-    constructor(ip, port, location) {
-        this.ip = ip;
-        this.port = port;
-        this.location = location;
+class SimpleCoffee {
+    getCost() {
+        return 10;
     }
-    url() {
-        return `https://${this.ip}:${this.port}`;
-    }
-    info() {
-        this.array.push(this.ip, this.port, this.location);
-        return this.array;
+    getDescription() {
+        return 'Проста кава';
     }
 }
-function DecoratorAWS(server) {
-    this.aws = true;
-    this.awsHttpsPort = 443;
-    this.locations = ['USA', 'Canada', 'Europe', 'China'];
-    server.setLocation = () => {
-        let count = 0;
-        this.locations.forEach(element => {
-            if (element === server.location) {
-                count++;
-            }
-            ;
-        });
-        if (count === 0) {
-            this.aws = false;
-        }
-        else {
-            count = 0;
-        }
-        ;
-    };
-    server.awsInfo = () => {
-        return `AWS is ${this.aws}`;
-    };
-    return server;
+class MilkCoffee {
+    constructor(coffee) {
+        this.coffee = coffee;
+    }
+    getCost() {
+        return this.coffee.getCost() + 2;
+    }
+    getDescription() {
+        return this.coffee.getDescription() + ', молоко';
+    }
 }
-function DecoratorAzure(server) {
-    server.isAzure = true;
-    server.port = Number(server.port) + 500;
-    return server;
+class ChocolateCoffee {
+    constructor(coffee) {
+        this.coffee = coffee;
+    }
+    getCost() {
+        return this.coffee.getCost() + 4;
+    }
+    getDescription() {
+        return this.coffee.getDescription() + ', шоколад';
+    }
 }
-let s1 = DecoratorAWS(new Server('12.34.56.78', '8080', 'USA'));
-s1.setLocation();
-console.log(s1.awsInfo());
-let s3 = DecoratorAzure(new Server('23.54.76.98', '7680', 'Europe'));
-console.log(s3.isAzure);
-console.log(s3.port);
+let someCoffee = new SimpleCoffee();
+console.log(someCoffee.getCost());
+console.log(someCoffee.getDescription());
+let milkCoffee = new MilkCoffee(someCoffee);
+console.log(milkCoffee.getCost());
+console.log(milkCoffee.getDescription());
+let milkPlusChocoCoffee = new ChocolateCoffee(milkCoffee);
+console.log(milkPlusChocoCoffee.getCost());
+console.log(milkPlusChocoCoffee.getDescription());
