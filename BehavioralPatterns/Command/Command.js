@@ -1,46 +1,40 @@
-class Calculation {
-    constructor(numb = 0) {
-        this.numb = numb;
+class Driver {
+    constructor(command) {
+        this.command = command;
     }
-    sum(value) {
-        this.numb += value;
-        return this;
-    }
-    diff(value) {
-        this.numb -= value;
-        return this;
-    }
-    mult(value) {
-        this.numb *= value;
-        return this;
-    }
-    div(value) {
-        this.numb /= value;
-        return this;
+    execute() {
+        this.command.execute();
     }
 }
-class Calculator extends Calculation {
-    constructor(subject, arch = []) {
-        super();
-        this.subject = subject;
-        this.arch = arch;
+class Engine {
+    constructor(state = false) {
+        this.state = state;
     }
-    setNumber(value) {
-        this.numb = value;
-        return this;
+    on() {
+        this.state = true;
     }
-    cleanNumb() {
-        this.numb = 0;
-        return this;
-    }
-    execute(command, value) {
-        this.arch.push(command);
-        this.subject[command](value);
-        return this;
-    }
-    showArch() {
-        console.log(this.arch);
+    off() {
+        this.state = false;
     }
 }
-const number = new Calculator(new Calculation(5));
-number.execute('sum', 11).execute('diff', 8).execute('mult', 3).execute('div', 2).showArch();
+class OnStartCommand {
+    constructor(engine) {
+        this.engine = engine;
+    }
+    execute() {
+        this.engine.on();
+    }
+}
+class SwitchOffCommand {
+    constructor(engine) {
+        this.engine = engine;
+    }
+    execute() {
+        this.engine.off();
+    }
+}
+let engine = new Engine();
+let onStartCommand = new OnStartCommand(engine);
+let driver = new Driver(onStartCommand);
+driver.execute();
+console.log(engine.state);
