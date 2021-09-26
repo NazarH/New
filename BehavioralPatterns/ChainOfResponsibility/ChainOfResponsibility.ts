@@ -1,67 +1,51 @@
-interface Operations{
-    sum: (value: number) => object;
-    diff:(value: number) => object;
-    mult:(value: number) => object;
-    div: (value: number) => object;
-}
+class Account{
+    incomer: Account;
+    balance: number;
+    name: string;
 
-class Calculation implements Operations{
-    constructor(public numb: number = 0){}
+    pay(orderPrice: number){
+        if(this.canPay(orderPrice)){
+            console.log(`Paid ${orderPrice} using ${this.name}`);
+        } else if(this.incomer){
+            console.log(`Cannot pay using ${this.name}`);
+            this.incomer.pay(orderPrice);
+        } else {
+            console.log('Unfortunately, not enough money');
+        }
+    }
 
-    sum(value: number){ 
-        this.numb += value; 
-        return this; 
+    canPay(amount: number){
+        return this.balance >= amount;
     }
-    diff(value: number){ 
-        this.numb -= value; 
-        return this; 
-    }
-    mult(value: number){ 
-        this.numb *= value; 
-        return this; 
-    }
-    div(value: number){ 
-        this.numb /= value; 
-        return this; 
+
+    setNext(account: Account){
+        this.incomer = account;
     }
 }
 
-class Calculator extends Calculation{
-    constructor(public numb: number = 0, public arch: any[] = []){ super() }
-
-    setNumber(value: number){
-        this.numb = value;
-        return this;
-    }
-
-    addToArch(){
-        this.arch.push(this.numb);
-        return this;
-    }
-
-    delLastElem(){
-        this.arch.splice(this.arch.length - 1, 1);
-        return this;
-    }
-
-    cleanArch(){
-        this.arch = [];
-        return this;
-    }
-
-    cleanNumb(){
-        this.numb = 0;
-        return this;
-    }
-
-    showArch(){
-        console.log(this.arch);
+class MasterCard extends Account{
+    constructor(public balance: number, public name: string = 'MasterCard'){
+        super();
     }
 }
 
-let number = new Calculator(5);
+class PayPal extends Account{
+    constructor(public balance: number, public name: string = 'PayPal'){
+        super();
+    }
+}
 
-number.sum(11).diff(8).mult(3).div(2).addToArch().cleanNumb()
-      .setNumber(3).sum(21).diff(10).mult(3).div(2).addToArch()
-      .showArch();
+class Visa extends Account{
+    constructor(public balance: number, public name: string = 'Visa'){
+        super();
+    }
+}
 
+let master = new MasterCard(200);
+let paypal = new PayPal(400);
+let visa = new Visa(600);
+
+master.setNext(paypal);
+paypal.setNext(visa);
+
+master.pay(438);
