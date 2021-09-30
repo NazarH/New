@@ -6,7 +6,7 @@ class Creator{
     save(val: any): object{ 
         return new Memento(val); 
     }
-    restore(memento: any){ 
+    restore(memento: Memento){ 
         return memento.value; 
     }
 }
@@ -14,7 +14,7 @@ class Creator{
 class Caretaker{
     constructor(public values: any[] = []){}
 
-    addMemento(memento: object){ 
+    addMemento(memento: any){ 
         this.values.push(memento);
     }
     getMemento(index: number){
