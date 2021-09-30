@@ -5,12 +5,12 @@ class Account{
 
     pay(orderPrice: number){
         if(this.canPay(orderPrice)){
-            console.log(`Paid ${orderPrice} using ${this.name}`);
+            console.log(`Оплата - ${orderPrice}UAH - використовуючи ${this.name}`);
         } else if(this.incomer){
-            console.log(`Cannot pay using ${this.name}`);
+            console.log(`З використанням ${this.name} оплата не можлива`);
             this.incomer.pay(orderPrice);
         } else {
-            console.log('Unfortunately, not enough money');
+            console.log('Нажаль, грошей не достатньо');
         }
     }
 

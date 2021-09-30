@@ -1,3 +1,5 @@
+debugger;
+
 class Driver {
     constructor(command) {
         this.command = command;
