@@ -8,7 +8,7 @@ class SimpleCoffee implements CoffeeInterface{
         return 10;
     }
     getDescription(){
-        return 'Проста кава';
+        return 'Проста кава ';
     }
 }
 
@@ -19,7 +19,7 @@ class MilkCoffee implements CoffeeInterface{
         return this.coffee.getCost() + 2;
     }
     getDescription(){
-        return this.coffee.getDescription() + ', молоко';
+        return this.coffee.getDescription() + '+ молоко ';
     }
 }
 
@@ -30,7 +30,7 @@ class ChocolateCoffee implements CoffeeInterface{
         return this.coffee.getCost() + 4;
     }
     getDescription(){
-        return this.coffee.getDescription() + ', шоколад';
+        return this.coffee.getDescription() + '+ шоколад';
     }
 }
 

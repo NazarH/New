@@ -3,7 +3,7 @@ class SimpleCoffee {
         return 10;
     }
     getDescription() {
-        return 'Проста кава';
+        return 'Проста кава ';
     }
 }
 class MilkCoffee {
@@ -14,7 +14,7 @@ class MilkCoffee {
         return this.coffee.getCost() + 2;
     }
     getDescription() {
-        return this.coffee.getDescription() + ', молоко';
+        return this.coffee.getDescription() + '+ молоко ';
     }
 }
 class ChocolateCoffee {
@@ -25,7 +25,7 @@ class ChocolateCoffee {
         return this.coffee.getCost() + 4;
     }
     getDescription() {
-        return this.coffee.getDescription() + ', шоколад';
+        return this.coffee.getDescription() + '+ шоколад';
     }
 }
 let someCoffee = new SimpleCoffee();
