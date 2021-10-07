@@ -14,7 +14,7 @@ class Creator{
 class Caretaker{
     constructor(public values: any[] = []){}
 
-    addMemento(memento: any){ 
+    addMemento(memento: object){ 
         this.values.push(memento);
     }
     getMemento(index: number){
