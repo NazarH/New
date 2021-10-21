@@ -1,62 +1,69 @@
 class Employee {
-    constructor(name, salary) {
+    constructor(name, workYears, engLang) {
         this.name = name;
-        this.salary = salary;
+        this.workYears = workYears;
+        this.engLang = engLang;
     }
-    work(func) {
-        return `${this.name} виконує ${func}`;
+    responsibilities() { }
+    work() {
+        return `${this.name} виконує ${this.responsibilities}`;
     }
-    getPaid() {
-        return `${this.name} має заробітну платню - ${this.salary}$`;
+    calcSalary() {
+        if (this instanceof Developer) {
+            if (this.workYears === 0 && this.engLang === false) {
+                return 500;
+            }
+            return (this.workYears + Number(this.engLang)) * 500;
+        }
+        else if (this instanceof Tester) {
+            if (this.workYears === 0 && this.engLang === false) {
+                return 350;
+            }
+            return (this.workYears + Number(this.engLang)) * 350;
+        }
+    }
+    getPaid(paid) {
+        return `${this.name} має заробітну платню - ${paid}$`;
     }
 }
 class Developer extends Employee {
-    constructor(name, salary) {
-        super(name, salary);
+    constructor(name, workYears, engLang) {
+        super(name, workYears, engLang);
         this.name = name;
-        this.salary = salary;
+        this.workYears = workYears;
+        this.engLang = engLang;
     }
-    makeDesign() {
-        return 'процес проектування ПО';
+    gainExp() {
+        this.workYears++;
+    }
+    learnEng() {
+        this.engLang = true;
     }
     responsibilities() {
         return 'процес розробки ПО';
     }
-    documentation() {
-        return 'документування';
-    }
-    support() {
-        return 'підтримку ПО';
-    }
-    introduction() {
-        return 'процес впровадження ПО';
-    }
 }
 class Tester extends Employee {
-    constructor(name, salary) {
-        super(name, salary);
+    constructor(name, workYears, engLang) {
+        super(name, workYears, engLang);
         this.name = name;
-        this.salary = salary;
+        this.workYears = workYears;
+        this.engLang = engLang;
+    }
+    gainExp() {
+        this.workYears++;
+    }
+    learnEng() {
+        this.engLang = true;
     }
     responsibilities() {
         return 'процес тестування';
     }
-    createAvtotest() {
-        return 'створення автотесту';
-    }
-    documentation() {
-        return 'документування';
-    }
-    scenario() {
-        return 'розробку сценаріїв тестування';
-    }
-    qualityСontrol() {
-        return 'контроль якості';
-    }
 }
-const dev = new Developer('Робітник_1', 1000);
-console.log(dev.getPaid());
-console.log(dev.work(dev.makeDesign()));
-const tester = new Tester('Робітник_2', 500);
-console.log(tester.getPaid());
-console.log(tester.work(tester.createAvtotest()));
+const dev = new Developer('Робітник_1', 2, true);
+console.log(dev.getPaid(dev.calcSalary()));
+const tester = new Tester('Робітник_2', 0, false);
+console.log(tester.getPaid(tester.calcSalary()));
+tester.learnEng();
+tester.gainExp();
+console.log(tester.getPaid(tester.calcSalary()));
